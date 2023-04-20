@@ -8,16 +8,16 @@
 int main(void)
 {
 	char delimeter[] = " \t\n";
-	char *command = NULL;
+	char *comand = NULL;
 	size_t n = 0;
 
 	while (1)
 	{
-		command = (char *)malloc(100 * sizeof(char));
+		comand = (char *)malloc(100 * sizeof(char));
 		prompt();
-		get_command(&command, &n);
-		tokenizer(command, delimeter);
-		free(command);
+		get_command(&comand, &n);
+		tokenizer(comand, delimeter);
+		free(comand);
 	}
 
 	return (0);
