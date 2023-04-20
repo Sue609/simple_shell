@@ -1,5 +1,6 @@
-/*
+/**
  * main - The beginning of the program.
+ * void@ the main function does not take any parameters.
  *
  * Return: 0 on success.
  */
