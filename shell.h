@@ -13,7 +13,7 @@ extern char **environ;
 
 
 void tokenizer(char *comand, char *delimiter);
-void print_env();
+void print_env(void);
 void get_command(char **comand, size_t *n);
 void prompt(void);
 

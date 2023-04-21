@@ -2,11 +2,11 @@
 
 /**
  * tokenizer - function that breaks down string commands.
- * @command: string of commands to be broken down
+ * @comand: string of commands to be broken down
  * @delimiter: characters to be used in breaking the string
  * Return: nothing
  */
-void tokenizer(char *command, char *delimiter)
+void tokenizer(char *comand, char *delimiter)
 {
 	char *token;
 	int token_index = 0;
@@ -67,14 +67,15 @@ void tokenizer(char *command, char *delimiter)
 		if (child == -1)
 		{
 			exit(EXIT_FAILURE);
-		} else if
+		}
+		else if (child == 0)
 		{
 			execve(token_arr[0], token_arr, env);
 			perror("./shell");
 			exit(EXIT_FAILURE);
 		} else
 		{
-			waitpid(child, &status, 0)
+			waitpid(child, &status, 0);
 		}
 	}
 }
