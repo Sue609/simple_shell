@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * tokenizer -  function that breaks down string commands.
- * @comand: string of commands to be broken down
+ * tokenizer - function that breaks down string commands.
+ * @command: string of commands to be broken down
  * @delimiter: characters to be used in breaking the string
  * Return: nothing
  */
@@ -67,12 +67,12 @@ void tokenizer(char *command, char *delimiter)
 		if (child == -1)
 		{
 			exit(EXIT_FAILURE);
-		}else if
+		} else if
 		{
 			execve(token_arr[0], token_arr, env);
 			perror("./shell");
 			exit(EXIT_FAILURE);
-		}else
+		} else
 		{
 			waitpid(child, &status, 0)
 		}
