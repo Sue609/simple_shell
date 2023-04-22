@@ -1,21 +1,28 @@
 #include "shell.h"
 
 /**
- * get_command - gets user input
- * @comand: pointer to memory/buffer
- * @n: size of the buffer
+ * get_command - This function gets user input
+ * @comand: pointer to a char array which stores users input.
+ * @n: size of the buffer.
+ *
  * Return: nothing
  */
 void get_command(char **comand, size_t *n)
 {
 	ssize_t characters_read;
-	
+
+	*comand = NULL;
+
 	characters_read = getline(comand, n, stdin);
 
 	if (characters_read < 0)
 	{
 		printf("\n");
-		free(comand);
+		if (*comand != NULL)
+		{
+			free(*comand);
+		}
+
 		exit(0);
 	}
 	(*comand)[strcspn(*comand, "\n")] = '\n';
