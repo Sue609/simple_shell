@@ -17,20 +17,20 @@ void tokenizer(char *comand, char *delimiter)
 	token = strtok(comand, delimiter);
 	while (token != NULL)
 	{
-		token_arr[token_index] = token;
-		token_index++;
+		if (token[0] != '#')
+		{
+			token_arr[token_index] = token;
+			token_index++;
+		}
 		token = strtok(NULL, delimiter);
 	} token_arr[token_index] = NULL;
 	if (strcmp(token_arr[0], "cd") == 0)
-	{
 		run_cd_command(token_arr, token_index);
-	} else if (strcmp(token_arr[0], "exit") == 0)
-	{
+	else if (strcmp(token_arr[0], "exit") == 0)
 		run_exit_command();
-	} else if (strcmp(token_arr[0], "ls") == 0)
-	{
+	else if (strcmp(token_arr[0], "ls") == 0)
 		run_ls_command(token_arr, status);
-	} else if (strcmp(token_arr[0], "env") == 0)
+	else if (strcmp(token_arr[0], "env") == 0)
 		run_env_command();
 	else
 	{
@@ -44,8 +44,6 @@ void tokenizer(char *comand, char *delimiter)
 			perror("./shell");
 			exit(EXIT_FAILURE);
 		} else
-		{
 			waitpid(child, &status, 0);
-		}
 	}
 }
