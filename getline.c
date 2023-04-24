@@ -15,7 +15,9 @@
  */
 void my_memcpy(char *dest, const char *src, size_t n)
 {
-	for (size_t i = 0; i < n; i++)
+	size_t i;
+
+	for (i = 0; i < n; i++)
 	{
 		dest[i] = src[i];
 	}
@@ -52,9 +54,10 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 	char c;
 	char *new_line;
 
-	if (!line)
+	if (!line){
 		perror("malloc");
 		exit(EXIT_FAILURE);
+	}
 	while (*position < bytes_read)
 	{
 		c = buffer[(*position)++];
@@ -66,8 +69,10 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 				new_line = malloc(*line_pos + 1 + BUFFER_SIZE);
 
 				if (!new_line)
+				{
 					perror("malloc");
 					exit(EXIT_FAILURE);
+				}
 				my_memcpy(new_line, line, *line_pos + 1);
 				free(line);
 				line = new_line;
@@ -78,14 +83,16 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 		else
 		{
 			if (*line_pos % BUFFER_SIZE == 0)
+			{
 				new_line = malloc(*line_pos + BUFFER_SIZE);
-
 				if (!new_line)
+				{
 					perror("malloc");
-					exit(EXIT_FAILURE);
+					exit(EXIT_FAILURE);}
 				my_memcpy(new_line, line, *line_pos);
 				free(line);
 				line = new_line;
+			}
 			line[(*line_pos)++] = c;
 		}
 	}
