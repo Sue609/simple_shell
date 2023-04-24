@@ -32,6 +32,8 @@ void tokenizer(char *comand, char *delimiter)
 		run_ls_command(token_arr, status);
 	else if (strcmp(token_arr[0], "env") == 0)
 		run_env_command();
+	else if (strcmp(token_arr[0], "alias") == 0)
+		hendle_alias(comand);
 	else
 	{
 		pid_t child = fork();
