@@ -49,19 +49,21 @@ int read_input(char *buffer)
 char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 {
 	char *line = malloc(BUFFER_SIZE);
+	char c;
+	char *new_line;
 
 	if (!line)
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	while (*position < bytes_read)
 	{
-		char c = buffer[(*position)++];
+		c = buffer[(*position)++];
 
 		if (c == '\n')
 		{
 			if (*line_pos % BUFFER_SIZE == 0)
 			{
-				char *new_line = malloc(*line_pos + 1 + BUFFER_SIZE);
+				new_line = malloc(*line_pos + 1 + BUFFER_SIZE);
 
 				if (!new_line)
 					perror("malloc");
@@ -70,13 +72,13 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 				free(line);
 				line = new_line;
 			}
-			linw[*line_pos] = '\0';
+			line[*line_pos] = '\0';
 			return (line);
 		}
 		else
 		{
 			if (*line_pos % BUFFER_SIZE == 0)
-				char *new_line = malloc(*line_pos + BUFFER_SIZE);
+				new_line = malloc(*line_pos + BUFFER_SIZE);
 
 				if (!new_line)
 					perror("malloc");
