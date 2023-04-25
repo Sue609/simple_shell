@@ -33,7 +33,7 @@ void tokenizer(char *comand, char *delimiter)
 	else if (my_strcmp(token_arr[0], "env") == 0)
 		run_env_command();
 	else if (my_strcmp(token_arr[0], "alias") == 0)
-		hendle_alias(comand);
+		handle_alias(comand);
 	else
 	{
 		pid_t child = fork();

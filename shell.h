@@ -9,11 +9,6 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #define BUFFER_SIZE 1024
-typedef struct
-{
-	char name[MAX_ALIAS_NAME_LENGTH];
-	char value[MAX_ALIAS_VALUE_LENGTH];
-} alias_t;
 
 #define MAX_ALIAS_COUNT 100
 #define MAX_ALIAS_NAME_LENGTH 50

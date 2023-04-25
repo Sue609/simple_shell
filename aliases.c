@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef struct
+{
+	char name[MAX_ALIAS_NAME_LENGTH];
+	char value[MAX_ALIAS_VALUE_LENGTH];
+} alias_t;
 /**
  * print_aliases - function that prints existing aliases
  * Return: Nothing
@@ -10,8 +15,10 @@
 void print_aliases(void)
 {
 	int alias_count = 0;
+	int i;
+	alias_t aliases[MAX_ALIAS_COUNT];
 
-	for (int i = 0; i < alias_count; i++)
+	for (i = 0; i < alias_count; i++)
 	{
 		printf("%s = '%s'\n", aliases[i].name, aliases[i].value);
 	}
@@ -26,6 +33,7 @@ void print_aliases(void)
 void set_alias(char *name, char *value)
 {
 	int alias_count = 0;
+	int i;
 	alias_t aliases[MAX_ALIAS_COUNT];
 
 	if (alias_count >= MAX_ALIAS_COUNT)
@@ -33,11 +41,11 @@ void set_alias(char *name, char *value)
 		printf("Error: Too many aliases\n");
 		return;
 	}
-	for (int i = 0; i < alias_count; i++)
+	for (i = 0; i < alias_count; i++)
 	{
 		if (strcmp(aliases[i].name, name) == 0)
 		{
-			strcpy(aliases[i].value, vale);
+			strcpy(aliases[i].value, value);
 			return;
 		}
 	}
@@ -54,9 +62,11 @@ void set_alias(char *name, char *value)
 void handle_alias(char *input)
 {
 	char *token;
+	int i;
 	int alias_count = 0;
 	char name[MAX_ALIAS_NAME_LENGTH];
 	char value[MAX_ALIAS_VALUE_LENGTH];
+	alias_t aliases[MAX_ALIAS_COUNT];
 
 	if (strlen(input) == 5)
 	{
@@ -70,7 +80,7 @@ void handle_alias(char *input)
 
 	if (token == NULL)
 	{
-		for (int i = 0; i < alias_count; i++)
+		for (i = 0; i < alias_count; i++)
 		{
 			if (strcmp(aliases[i].name, name) == 0)
 			{
