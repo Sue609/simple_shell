@@ -9,9 +9,23 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #define BUFFER_SIZE 1024
+typedef struct
+{
+	char name[MAX_ALIAS_NAME_LENGTH];
+	char value[MAX_ALIAS_VALUE_LENGTH];
+} alias_t;
 
+#define MAX_ALIAS_COUNT 100
+#define MAX_ALIAS_NAME_LENGTH 50
+#define MAX_ALIAS_VALUE_LENGTH 100
+
+void print_aliases(void);
+void set_alias(char *name, char *value);
+void handle_alias(char *input);
+size_t my_strcspn(const char *s, const char *reject);
+char* my_strchr(const char *s, int c);
 extern char **environ;
-
+char* custom_strtok(char* str, const char* delimiters);
 int my_strcmp(const char *s1, const char *s2);
 void my_memcpy(char *dest, const char *src, size_t n);
 int read_input(char *buffer);
