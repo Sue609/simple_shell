@@ -25,7 +25,7 @@ void handle_alias(char *input);
 size_t my_strcspn(const char *s, const char *reject);
 char* my_strchr(const char *s, int c);
 extern char **environ;
-char* custom_strtok(char* str, const char* delimiters);
+char* custom_strtok(char *str, const char *delimiters);
 int my_strcmp(const char *s1, const char *s2);
 void my_memcpy(char *dest, const char *src, size_t n);
 int read_input(char *buffer);
