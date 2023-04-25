@@ -12,6 +12,7 @@
 
 extern char **environ;
 
+int my_strcmp(const char *s1, const char *s2);
 void my_memcpy(char *dest, const char *src, size_t n);
 int read_input(char *buffer);
 char *get_line(char *buffer, int *position, int bytes_read, int *line_pos);
