@@ -42,7 +42,7 @@ void run_exit_command(char *str[], int index)
 
 		else if(index == 2 && my_strcmp(str[0], "exit") == 0)
 		{
-			status = atoi(str[i]);
+			status = atoi(str[1]);
 			exit(status);
 		}
 	}

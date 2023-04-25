@@ -24,7 +24,7 @@ char *custom_strtok(char *str, const char *delimeters)
 		return (NULL);
 	}
 
-	token += my_strcspn(token, delimeters);
+	token += my_strspn(token, delimeters);
 
 	if (*token == '\0')
 	{
@@ -89,4 +89,38 @@ char *my_strchr(const char *s, int c)
 		return ((char *)s);
 
 	return (NULL);
+}
+
+
+/**
+ * my_strspn - loops over s string until it finds a character that is not delimeters.
+ * @str: constant character string.
+ * @delimeters: the specified delimeter.
+ *
+ * Return: length of enntire string.
+ */
+size_t my_strspn(const char *str, const char *delimiters)
+{
+	size_t i = 0;
+	int j;
+
+	while(str[i] != '\0')
+	{
+		j = 0;
+		while (delimiters[j] != '\0')
+		{
+			if (str[i] == delimiters[j])
+			{
+				break;
+			}
+			j++;
+		}
+		if (delimiters[j] == '\0')
+		{
+			break;
+		}
+		i++;
+	}
+
+	return (i);
 }

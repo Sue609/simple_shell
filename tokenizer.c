@@ -14,7 +14,7 @@ void tokenizer(char *comand, char *delimiter)
 	int status;
 	char **env = environ;
 
-	token = strtok(comand, delimiter);
+	token = custom_strtok(comand, delimiter);
 	while (token != NULL)
 	{
 		if (token[0] != '#')
@@ -22,12 +22,12 @@ void tokenizer(char *comand, char *delimiter)
 			token_arr[token_index] = token;
 			token_index++;
 		}
-		token = strtok(NULL, delimiter);
+		token = custom_strtok(NULL, delimiter);
 	} token_arr[token_index] = NULL;
 	if (my_strcmp(token_arr[0], "cd") == 0)
 		run_cd_command(token_arr, token_index);
 	else if (my_strcmp(token_arr[0], "exit") == 0)
-		run_exit_command(token_arr[0], token_index);
+		run_exit_command(&token_arr[0], token_index);
 	else if (my_strcmp(token_arr[0], "ls") == 0)
 		run_ls_command(token_arr, status);
 	else if (my_strcmp(token_arr[0], "env") == 0)
