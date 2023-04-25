@@ -27,7 +27,7 @@ int read_input(char *buffer);
 char *get_line(char *buffer, int *position, int bytes_read, int *line_pos);
 char *my_getline(char *buffer);
 void run_cd_command(char **token_arr, int token_index);
-void run_exit_command();
+void run_exit_command(char *str[], int index);
 void run_ls_command(char **token_arr, int status);
 void run_env_command();
 void tokenizer(char *comand, char *delimiter);

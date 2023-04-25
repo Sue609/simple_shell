@@ -25,13 +25,28 @@ void run_cd_command(char **token_arr, int token_index)
 
 /**
  * run_exit_command - function that exits a command.
+ * @str: character pointer.
+ * @index: integer index.
  *
  * Return: nothing
  */
 
-void run_exit_command(void)
+void run_exit_command(char *str[], int index)
 {
-	exit(0);
+	int status;
+
+	if (my_strcmp(str[0], "exit") == 0)
+	{
+		if (index == 1)
+			exit(0);
+
+		else if(index == 2 && my_strcmp(str[0], "exit") == 0)
+		{
+			status = atoi(str[i]);
+			exit(status);
+		}
+	}
+	
 }
 
 
