@@ -64,6 +64,6 @@ void prompt(void);
 
 int is_builtin_comand(char *comand);
 void handle_builtin_comands(char **token_arr, int token_index);
-void handle_external_commands(char **token_arr);
+void handle_external_comands(char **token_arr, char **env);
 
 #endif
