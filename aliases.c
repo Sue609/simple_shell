@@ -12,7 +12,7 @@ void print_aliases(void)
 {
 	int alias_count = 0;
 	int i;
-	alias_t aliases[MAX_ALIAS_COUNT];
+	struct alias_t aliases[MAX_ALIAS_COUNT];
 
 	for (i = 0; i < alias_count; i++)
 	{
@@ -30,7 +30,7 @@ void set_alias(char *name, char *value)
 {
 	int alias_count = 0;
 	int i;
-	alias_t aliases[MAX_ALIAS_COUNT];
+	struct alias_t aliases[MAX_ALIAS_COUNT];
 
 	if (alias_count >= MAX_ALIAS_COUNT)
 	{
@@ -62,7 +62,7 @@ void handle_alias(char *input)
 	int alias_count = 0;
 	char name[MAX_ALIAS_NAME_LENGTH];
 	char value[MAX_ALIAS_VALUE_LENGTH];
-	alias_t aliases[MAX_ALIAS_COUNT];
+	struct alias_t aliases[MAX_ALIAS_COUNT];
 
 	if (_strlen(input) == 5)
 	{
