@@ -14,6 +14,17 @@
 #define MAX_ALIAS_NAME_LENGTH 50
 #define MAX_ALIAS_VALUE_LENGTH 100
 
+/**
+ * struct alias_t - struct
+ * @name: name
+ * @value: value
+ * Description: This struct is for alias
+ */
+struct alias_t
+{
+	char name[MAX_ALIAS_NAME_LENGTH];
+	char value[MAX_ALIAS_VALUE_LENGTH];
+};
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 void print_aliases(void);

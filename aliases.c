@@ -3,11 +3,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct
+/**
+ * struct alias_t - struct
+ * @name: name
+ * @value: value
+ * Description: This struct is for alias
+ */
+struct alias_t
 {
 	char name[MAX_ALIAS_NAME_LENGTH];
 	char value[MAX_ALIAS_VALUE_LENGTH];
-} alias_t;
+};
 /**
  * print_aliases - function that prints existing aliases
  * Return: Nothing
