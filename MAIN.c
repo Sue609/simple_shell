@@ -3,16 +3,20 @@
 /**
  * get_command - This function gets user input
  * @comand: pointer to a char array which stores users input.
+ * @n: size_t.
  *
  * Return: nothing
  */
-void get_command(char **comand)
+void get_command(char **comand, size_t *n)
 {
-	*comand = my_getline(*comand);
+	ssize_t characters_read;
 
-	if (*comand == NULL)
+	characters_read = getline(comand, n, stdin);
+
+	if (characters_read < 0)
 	{
 		write(STDOUT_FILENO, "\n", 1);
+		free(*comand);
 		exit(0);
 	}
 	(*comand)[strcspn(*comand, "\n")] = '\0';
@@ -29,14 +33,13 @@ int main(void)
 {
 	char delimeter[] = " \t\n";
 	char *comand = NULL;
-	static char buffer[BUFFER_SIZE];
+	size_t n = 0;
 
 	while (1)
 	{
+		comand = (char *)malloc(100 * sizeof(char));
 		prompt();
-		comand = my_getline(buffer);
-
-		get_command(&comand);
+		get_command(&comand, &n);
 		tokenizer(comand, delimeter);
 		free(comand);
 	}

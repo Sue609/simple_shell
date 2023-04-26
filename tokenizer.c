@@ -59,14 +59,19 @@ void execute_comand(char **token_arr, char *comand)
 
 	if (my_strcmp(token_arr[0], "cd") == 0)
 		run_cd_command(token_arr, token_index);
+
 	else if (my_strcmp(token_arr[0], "exit") == 0)
 		run_exit_command(&token_arr[0], token_index);
+
 	else if (my_strcmp(token_arr[0], "ls") == 0)
 		run_ls_command(token_arr, status);
+
 	else if (my_strcmp(token_arr[0], "env") == 0)
 		run_env_command();
+
 	else if (my_strcmp(token_arr[0], "alias") == 0)
 		handle_alias(comand);
+
 	else if (my_strcmp(token_arr[0], "pwd") == 0)
 		print_current_directory();
 	else

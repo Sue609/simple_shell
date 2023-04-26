@@ -45,6 +45,7 @@ void execute_comand(char **token_arr, char *comand);
 void tokenize_comand(char *comand, char *delimiter,
 	char **token_arr, int *token_count);
 
+void get_command(char **comand, size_t *n);
 void print_current_directory(void);
 extern char **environ;
 char *custom_strtok(char *str, const char *delimiters);
@@ -59,7 +60,6 @@ void run_ls_command(char **token_arr, int status);
 void run_env_command(void);
 void tokenizer(char *comand, char *delimiter);
 void print_env(void);
-void get_command(char **comand);
 void prompt(void);
 
 #endif
