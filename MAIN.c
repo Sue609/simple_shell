@@ -10,14 +10,17 @@
 void get_command(char **comand, size_t *n)
 {
 	ssize_t characters_read;
+	*comand = NULL;
 
-	characters_read = getline(comand, n, stdin);
-
-	if (characters_read < 0)
+	while (*comand == NULL || strlen(*comand) == 0)
 	{
-		write(STDOUT_FILENO, "\n", 1);
-		free(*comand);
-		exit(0);
+		prompt();
+		characters_read = getline(comand, n, stdin);
+
+		if (characters_read == -1)
+		{
+			exit(0);
+		}
 	}
 	(*comand)[strcspn(*comand, "\n")] = '\0';
 }
@@ -38,7 +41,6 @@ int main(void)
 	while (1)
 	{
 		comand = (char *)malloc(100 * sizeof(char));
-		prompt();
 		get_command(&comand, &n);
 		tokenizer(comand, delimeter);
 		free(comand);
