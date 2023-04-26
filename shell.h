@@ -66,4 +66,8 @@ int is_builtin_comand(char *comand);
 void handle_builtin_comands(char **token_arr, int token_index);
 void handle_external_commands(char **token_arr);
 
+int my_strncmp(const char *s1, const char *s2, size_t n);
+char *my_getenv(const char *name);
+size_t m_strlen(const char *str);
+
 #endif
