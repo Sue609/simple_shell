@@ -25,7 +25,8 @@ void tokenizer(char *comand, char *delimiter)
  *
  * Return: nothing.
  */
-void tokenize_comand(char *comand, char *delimiter, char **token_arr, int *token_count)
+void tokenize_comand(char *comand, char *delimiter,
+		char **token_arr, int *token_count)
 {
 	char *token;
 
