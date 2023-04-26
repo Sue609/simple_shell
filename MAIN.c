@@ -9,11 +9,14 @@
  */
 void get_command(char **comand, size_t *n)
 {
+	char *start;
 	ssize_t characters_read;
 	*comand = NULL;
+	
 
 	while (*comand == NULL || strlen(*comand) == 0)
-	{	
+	{
+		prompt();
 		characters_read = getline(comand, n, stdin);
 
 		if (characters_read == -1)
@@ -21,9 +24,29 @@ void get_command(char **comand, size_t *n)
 			write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
+
+		if (characters_read == 1 && (*comand)[0] == '\n')
+		{
+			free(*comand);
+			*comand = NULL;
+			continue;
+		}
+
+		start = *comand;
+		while (*start == ' ' || *start == '\t')
+		{
+			start++;
+		}
+		if (*start == '\n')
+		{
+			free(*comand);
+			*comand = NULL;
+			continue;
+		}
 	}
 	(*comand)[strcspn(*comand, "\n \t")] = '\0';
 }
+
 
 /**
  * main - The beginning of the program.
@@ -41,7 +64,6 @@ int main(void)
 	while (1)
 	{
 		comand = (char *)malloc(100 * sizeof(char));
-		prompt();
 		get_command(&comand, &n);
 		tokenizer(comand, delimeter);
 		free(comand);
