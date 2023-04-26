@@ -12,7 +12,7 @@ void run_cd_command(char **token_arr, int token_index)
 {
 	if (token_index == 1)
 	{
-		chdir(getenv("HOME"));
+		chdir(my_getenv("HOME"));
 	}
 
 	else

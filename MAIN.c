@@ -12,7 +12,6 @@ void get_command(char **comand, size_t *n)
 	char *start;
 	ssize_t characters_read;
 	*comand = NULL;
-	
 
 	while (*comand == NULL || strlen(*comand) == 0)
 	{
