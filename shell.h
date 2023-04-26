@@ -38,15 +38,16 @@ void set_alias(char *name, char *value);
 void handle_alias(char *input);
 
 size_t my_strcspn(const char *s, const char *reject);
-char* my_strchr(const char *s, int c);
+char *my_strchr(const char *s, int c);
 size_t my_strspn(const char *str, const char *delimiters);
 
 void execute_comand(char **token_arr, char *comand);
-void tokenize_comand(char *comand, char *delimiter, char **token_arr, int *token_count);
+void tokenize_comand(char *comand, char *delimiter,
+	char **token_arr, int *token_count);
 
 void print_current_directory(void);
 extern char **environ;
-char* custom_strtok(char *str, const char *delimiters);
+char *custom_strtok(char *str, const char *delimiters);
 int my_strcmp(const char *s1, const char *s2);
 void my_memcpy(char *dest, const char *src, size_t n);
 int read_input(char *buffer);
