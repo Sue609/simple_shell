@@ -13,7 +13,7 @@ void tokenizer(char *comand, char *delimiter)
 	int token_index = 0;
 
 	token = custom_strtok(comand, delimiter);
-	while(token != NULL)
+	while (token != NULL)
 	{
 		if (token[0] != '#')
 		{
@@ -27,7 +27,12 @@ void tokenizer(char *comand, char *delimiter)
 	execute_comand(token_arr, comand);
 }
 
-
+/**
+ * execute_comand - function that executes a comand
+ * @token_arr: the string passed as comands
+ * @comand: The comands passed
+ * Return:pointer
+ */
 void execute_comand(char **token_arr, char *comand)
 {
 	int token_index = 0;
