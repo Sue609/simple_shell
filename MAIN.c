@@ -22,7 +22,7 @@ void get_command(char **comand, size_t *n)
 			exit(0);
 		}
 	}
-	(*comand)[strcspn(*comand, "\n")] = '\0';
+	(*comand)[strcspn(*comand, "\n \t")] = '\0';
 }
 
 /**
