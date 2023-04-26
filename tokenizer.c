@@ -9,52 +9,30 @@
 void tokenizer(char *comand, char *delimiter)
 {
 	char *token_arr[100];
-	int token_count = 0;
-
-	tokenize_comand(comand, delimiter, token_arr, &token_count);
-	execute_comand(token_arr, comand);
-
-}
-
-/**
- * tokenize_comand - function that tokenizes a comand.
- * @comand: command to be executed.
- * @delimiter: position where string to be spilit.
- * @token_arr: character double pointer array.
- * @token_count: numer of tokens after tokenization.
- *
- * Return: nothing.
- */
-void tokenize_comand(char *comand, char *delimiter,
-		char **token_arr, int *token_count)
-{
 	char *token;
+	int token_index = 0;
 
 	token = custom_strtok(comand, delimiter);
-	while (token != NULL)
+	while(token != NULL)
 	{
 		if (token[0] != '#')
 		{
-			token_arr[*token_count] = token;
-			(*token_count)++;
+			token_arr[token_index] = token;
+			token_index++;
 		}
-
 		token = custom_strtok(NULL, delimiter);
-		}
-	token_arr[*token_count] = NULL;
+	}
+	token_arr[token_index] = NULL;
+
+	execute_comand(token_arr, comand);
 }
 
-/**
- * execute_comand - function that executes the tokenizer commands.
- * @token_arr: character double pointer array.
- * @comand: comand to be executed.
- *
- * Return: nothing.
- */
+
 void execute_comand(char **token_arr, char *comand)
 {
+	int token_index = 0;
 	int status = 0;
-	int token_index = 1;
+	pid_t child;
 	char **env = environ;
 
 	if (my_strcmp(token_arr[0], "cd") == 0)
@@ -76,16 +54,20 @@ void execute_comand(char **token_arr, char *comand)
 		print_current_directory();
 	else
 	{
-		pid_t child = fork();
-
+		child = fork();
 		if (child == -1)
+		{
 			exit(EXIT_FAILURE);
+		}
 		else if (child == 0)
 		{
 			execve(token_arr[0], token_arr, env);
 			perror("./shell");
 			exit(EXIT_FAILURE);
-		} else
+		}
+		else
+		{
 			waitpid(child, &status, 0);
+		}
 	}
 }

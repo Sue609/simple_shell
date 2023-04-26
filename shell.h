@@ -62,4 +62,8 @@ void tokenizer(char *comand, char *delimiter);
 void print_env(void);
 void prompt(void);
 
+int is_builtin_comand(char *comand);
+void handle_builtin_comands(char **token_arr, int token_index);
+void handle_external_commands(char **token_arr);
+
 #endif
