@@ -14,6 +14,8 @@
 #define MAX_ALIAS_NAME_LENGTH 50
 #define MAX_ALIAS_VALUE_LENGTH 100
 
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
 void print_aliases(void);
 void set_alias(char *name, char *value);
 void handle_alias(char *input);

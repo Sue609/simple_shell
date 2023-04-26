@@ -45,12 +45,12 @@ void set_alias(char *name, char *value)
 	{
 		if (strcmp(aliases[i].name, name) == 0)
 		{
-			strcpy(aliases[i].value, value);
+			_strcpy(aliases[i].value, value);
 			return;
 		}
 	}
-	strcpy(aliases[alias_count].name, name);
-	strcpy(aliases[alias_count].value, value);
+	_strcpy(aliases[alias_count].name, name);
+	_strcpy(aliases[alias_count].value, value);
 	alias_count++;
 }
 
@@ -68,13 +68,13 @@ void handle_alias(char *input)
 	char value[MAX_ALIAS_VALUE_LENGTH];
 	alias_t aliases[MAX_ALIAS_COUNT];
 
-	if (strlen(input) == 5)
+	if (_strlen(input) == 5)
 	{
 		print_aliases();
 		return;
 	}
 	token = strtok(input + 6, "=");
-	strcpy(name, token);
+	_strcpy(name, token);
 
 	token = strtok(NULL, "=");
 
@@ -90,7 +90,7 @@ void handle_alias(char *input)
 	}
 	else
 	{
-		strcpy(value, token);
+		_strcpy(value, token);
 		set_alias(name, value);
 	}
 }
