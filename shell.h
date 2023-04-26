@@ -28,6 +28,8 @@ struct alias_t
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 
+char *expand_line(char *line, int *line_pos, int size);
+
 int my_atoi(char *str);
 unsigned int my_strlen(const char *s);
 
@@ -42,7 +44,7 @@ size_t my_strspn(const char *str, const char *delimiters);
 void execute_comand(char **token_arr, char *comand);
 void tokenize_comand(char *comand, char *delimiter, char **token_arr, int *token_count);
 
-void print_current_directory();
+void print_current_directory(void);
 extern char **environ;
 char* custom_strtok(char *str, const char *delimiters);
 int my_strcmp(const char *s1, const char *s2);
@@ -53,7 +55,7 @@ char *my_getline(char *buffer);
 void run_cd_command(char **token_arr, int token_index);
 void run_exit_command(char *str[], int index);
 void run_ls_command(char **token_arr, int status);
-void run_env_command();
+void run_env_command(void);
 void tokenizer(char *comand, char *delimiter);
 void print_env(void);
 void get_command(char **comand);

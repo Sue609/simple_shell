@@ -62,25 +62,19 @@ void run_exit_command(char *str[], int index)
 void run_ls_command(char **token_arr, int status)
 {
 	pid_t child = fork();
-	char *envp[] = { NULL };
-	char *argv[] = { token_arr[0], token_arr[1], NULL };
-	char *path = "/bin/ls";
 
 	if (child == -1)
 	{
-		perror("Fork Unsuccessful");
+		perror("fork unsuccrsful");
 		exit(EXIT_FAILURE);
 	}
 
 	else if (child == 0)
 	{
-		if (execve(path, argv, envp) == -1)
-		{
-			perror("evecve");
-			exit(EXIT_FAILURE);
-		}
+		execvp(token_arr[0], token_arr);
+		perror("./shell");
+		exit(EXIT_FAILURE);
 	}
-
 	else
 	{
 		waitpid(child, &status, 0);

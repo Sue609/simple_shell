@@ -23,6 +23,7 @@ void my_memcpy(char *dest, const char *src, size_t n)
 	}
 }
 
+
 /**
  * read_input - function that read in the inputon commandline
  * @buffer: the  variable to hold the string passed
@@ -40,6 +41,8 @@ int read_input(char *buffer)
 	return (bytes_read);
 }
 
+
+
 /**
  * get_line - function to get input from the user on command line
  * @buffer: variable holding the  inputs
@@ -52,41 +55,64 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 {
 	char *line = malloc(BUFFER_SIZE);
 	char c;
-	char *new_line;
 
 	if (!line)
 	{
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
+
 	while (*position < bytes_read)
 	{
 		c = buffer[(*position)++];
 
 		if (c == '\n')
 		{
-			if (*line_pos % BUFFER_SIZE == 0)
-				new_line = malloc(*line_pos + 1 + BUFFER_SIZE);
-
-				if (!new_line)
-					perror("malloc");
-					exit(EXIT_FAILURE);
-				my_memcpy(new_line, line, *line_pos + 1);
-				free(line);
-				line = new_line;
 			line[*line_pos] = '\0';
 			return (line);
 		}
+
 		else
-			if (*line_pos % BUFFER_SIZE == 0)
-				new_line = malloc(*line_pos + BUFFER_SIZE);
-				if (!new_line)
-					perror("malloc");
-					exit(EXIT_FAILURE);
-				my_memcpy(new_line, line, *line_pos);
-				free(line);
-				line = new_line;
+		{
 			line[(*line_pos)++] = c;
+
+			if (*line_pos % BUFFER_SIZE == 0)
+			{
+				line = expand_line(line, line_pos, *line_pos + 1);
+			}
+		}
 	}
+
+	free(line);
 	return (NULL);
+}
+
+
+
+/**
+ * expand_line - function that increases size of line buffer.
+ * @line: line to be expanded.
+ * @line_pos: integer.
+ * @size: size of the line to be expanded.
+ *
+ * Return: a character.
+ */
+char *expand_line(char *line, int *line_pos, int size)
+{
+	char *new_line;
+	int new_size = size + BUFFER_SIZE;
+
+	new_line = malloc(new_size);
+
+	if (!new_line)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+
+	my_memcpy(new_line, line, *line_pos);
+	free(line);
+	*line_pos = 0;
+
+	return (new_line);
 }
