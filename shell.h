@@ -27,6 +27,10 @@ struct alias_t
 };
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
+
+int my_atoi(char *str);
+unsigned int my_strlen(const char *s);
+
 void print_aliases(void);
 void set_alias(char *name, char *value);
 void handle_alias(char *input);

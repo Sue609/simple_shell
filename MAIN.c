@@ -12,7 +12,7 @@ void get_command(char **comand)
 
 	if (*comand == NULL)
 	{
-		printf("\n");
+		write(STDOUT_FILENO, "\n", 1);
 		exit(0);
 	}
 	(*comand)[strcspn(*comand, "\n")] = '\0';

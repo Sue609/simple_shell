@@ -34,7 +34,7 @@ int read_input(char *buffer)
 
 	if (bytes_read < 0)
 	{
-		printf("Error reading input\n");
+		write(STDERR_FILENO, "Error reading input\n", 20);
 		exit(1);
 	}
 	return (bytes_read);

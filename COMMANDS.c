@@ -42,7 +42,7 @@ void run_exit_command(char *str[], int index)
 
 		else if (index == 2 && my_strcmp(str[0], "exit") == 0)
 		{
-			status = atoi(str[1]);
+			status = my_atoi(str[1]);
 			exit(status);
 		}
 	}
@@ -62,6 +62,9 @@ void run_exit_command(char *str[], int index)
 void run_ls_command(char **token_arr, int status)
 {
 	pid_t child = fork();
+	char *envp[] = { NULL };
+	char *argv[] = { token_arr[0], token_arr[1], NULL };
+	char *path = "/bin/ls";
 
 	if (child == -1)
 	{
@@ -71,9 +74,11 @@ void run_ls_command(char **token_arr, int status)
 
 	else if (child == 0)
 	{
-		execvp(token_arr[0], token_arr);
-		perror("./shell");
-		exit(EXIT_FAILURE);
+		if (execve(path, argv, envp) == -1)
+		{
+			perror("evecve");
+			exit(EXIT_FAILURE);
+		}
 	}
 
 	else
@@ -120,7 +125,7 @@ void print_current_directory(void)
 		exit(EXIT_FAILURE);
 	}
 	setenv("PWD", cwd, 1);
-	write(STDOUT_FILENO, cwd, strlen(cwd));
+	write(STDOUT_FILENO, cwd, my_strlen(cwd));
 	write(STDOUT_FILENO, "\n", 1);
 
 	free(current_dir);
