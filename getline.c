@@ -54,7 +54,8 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 	char c;
 	char *new_line;
 
-	if (!line){
+	if (!line)
+	{
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
@@ -65,36 +66,27 @@ char *get_line(char *buffer, int *position, int bytes_read, int *line_pos)
 		if (c == '\n')
 		{
 			if (*line_pos % BUFFER_SIZE == 0)
-			{
 				new_line = malloc(*line_pos + 1 + BUFFER_SIZE);
 
 				if (!new_line)
-				{
 					perror("malloc");
 					exit(EXIT_FAILURE);
-				}
 				my_memcpy(new_line, line, *line_pos + 1);
 				free(line);
 				line = new_line;
-			}
 			line[*line_pos] = '\0';
 			return (line);
 		}
 		else
-		{
 			if (*line_pos % BUFFER_SIZE == 0)
-			{
 				new_line = malloc(*line_pos + BUFFER_SIZE);
 				if (!new_line)
-				{
 					perror("malloc");
-					exit(EXIT_FAILURE);}
+					exit(EXIT_FAILURE);
 				my_memcpy(new_line, line, *line_pos);
 				free(line);
 				line = new_line;
-			}
 			line[(*line_pos)++] = c;
-		}
 	}
 	return (NULL);
 }

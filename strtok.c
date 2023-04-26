@@ -93,9 +93,9 @@ char *my_strchr(const char *s, int c)
 
 
 /**
- * my_strspn - loops over s string until it finds a character that is not delimeters.
+ * my_strspn - loops over string until it finds a char that is not delimeters.
  * @str: constant character string.
- * @delimeters: the specified delimeter.
+ * @delimiters: the specified delimeter.
  *
  * Return: length of enntire string.
  */
@@ -104,7 +104,7 @@ size_t my_strspn(const char *str, const char *delimiters)
 	size_t i = 0;
 	int j;
 
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		j = 0;
 		while (delimiters[j] != '\0')
