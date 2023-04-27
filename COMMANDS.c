@@ -36,21 +36,21 @@ void run_exit_command(char *str[], int index)
 {
 	int status;
 
-	if (my_strcmp(str[0], "exit") == 0)
+	if (index == 2 && my_strcmp(str[0], "exit") == 0)
 	{
-		if (index == 1)
-			exit(0);
-
-		else if (index == 2 && my_strcmp(str[0], "exit") == 0)
-		{
-			status = my_atoi(str[1]);
-			exit(status);
-		}
+		status = my_atoi(str[1]);
+		exit(status);
 	}
-
+	else if (index == 1 && my_strcmp(str[0], "exit") == 0)
+	{
+		exit(0);
+	}
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5d92c1e73ead333d4f6f20c3dadc66fba43c10e9
 /**
  * run_ls_command - this function runs the list command.
  * @token_arr: double character pointer .
