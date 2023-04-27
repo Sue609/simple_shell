@@ -24,7 +24,7 @@ void tokenizer(char *comand, char *delimiter)
 	}
 	token_arr[token_index] = NULL;
 
-	execute_comand(token_arr, comand);
+	execute_comand(token_arr /*comand*/);
 }
 
 /**
@@ -33,7 +33,7 @@ void tokenizer(char *comand, char *delimiter)
  * @comand: The comands passed
  * Return:pointer
  */
-void execute_comand(char **token_arr, char *comand)
+void execute_comand(char **token_arr /*char *comand*/)
 {
 	int token_index = 0;
 	int status = 0;
@@ -52,8 +52,8 @@ void execute_comand(char **token_arr, char *comand)
 	else if (my_strcmp(token_arr[0], "env") == 0)
 		run_env_command();
 
-	else if (my_strcmp(token_arr[0], "alias") == 0)
-		handle_alias(comand);
+	/*else if (my_strcmp(token_arr[0], "alias") == 0)
+		handle_alias(comand);*/
 
 	else if (my_strcmp(token_arr[0], "pwd") == 0)
 		print_current_directory();
