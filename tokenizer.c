@@ -1,5 +1,4 @@
 #include "shell.h"
-#define OUTPUT "MY_OUTPUT_VARIABLE"
 
 
 /**
@@ -48,7 +47,7 @@ void execute_comand(char **token_arr, char *comand)
 	int token_index = 0;
 	int status = 0;
 	pid_t child;
-	char **env = environ;	
+	char **env = environ;
 
 	if (token_arr == NULL || token_arr[0] == NULL)
 		return;
@@ -74,9 +73,7 @@ void execute_comand(char **token_arr, char *comand)
 	{
 		child = fork();
 		if (child == -1)
-		{
 			exit(EXIT_FAILURE);
-		}
 		else if (child == 0)
 		{
 			execve(token_arr[0], token_arr, env);
@@ -84,9 +81,6 @@ void execute_comand(char **token_arr, char *comand)
 			exit(EXIT_FAILURE);
 		}
 		else
-		{
 			waitpid(child, &status, 0);
-
-		}
 	}
 }
