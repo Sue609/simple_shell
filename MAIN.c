@@ -13,15 +13,17 @@ void get_command(char **comand, size_t *n)
 	char *start;
 	ssize_t characters_read;
 	char *end;
+	int interactive = isatty(STDIN_FILENO);
 	*comand = NULL;
 
-	while (1)/*(*comand == NULL || strlen(*comand) == 0)*/
+	while (*comand == NULL || strlen(*comand) == 0)
 	{
 		characters_read = getline(comand, n, stdin);
 
 		if (characters_read == -1)
 		{
-			write(STDOUT_FILENO, "\n", 1);
+			if (interactive)
+				write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
 
@@ -30,19 +32,15 @@ void get_command(char **comand, size_t *n)
 			free(*comand);
 			*comand = NULL;
 			continue;
-		}/*
-		if (*comand == NULL)
-			continue;
+		}
 		if ((*comand)[characters_read - 1] == '\n' || (*comand)[characters_read - 1] == ' ')
 		{
 			(*comand)[characters_read - 1] = '\0';
-		}*/
+			characters_read--;
+		}
 
 		start = *comand;
-
-		while (isspace(*start))
-			start++;
-		/*while (*start == ' ' || *start == '\t')
+		while (*start == ' ' || *start == '\t')
 		{
 			start++;
 		}
@@ -51,21 +49,14 @@ void get_command(char **comand, size_t *n)
 			free(*comand);
 			*comand = NULL;
 			continue;
-		}*/
+		}
 		end = *comand + characters_read - 1;
 
-		/*while (end > start && (*end == ' ' || *end == '\t' || *end == '\n'))
+		while (end > start && (*end == ' ' || *end == '\t' || *end == '\n'))
 		{
 			end--;
-			if (end == NULL)
-				continue;
-		}*/
-		while (end > start && isspace(*end))
-			end--;
-		if (strlen(start) > 0)
-			break;
-
-		/**(end + 1) = '\0';*/
+		}
+		*(end + 1) = '\0';
 	}
 }
 
@@ -91,7 +82,7 @@ int main(void)
 		free(comand);
 		comand = NULL;
 		comand = (char *)malloc(10 * sizeof(char));
-	}
+	}	
 	return (0);
 
 }

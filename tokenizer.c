@@ -1,4 +1,6 @@
 #include "shell.h"
+#define OUTPUT "MY_OUTPUT_VARIABLE"
+
 
 /**
  * tokenizer - function that splits string of commands
@@ -24,6 +26,10 @@ void tokenizer(char *comand, char *delimiter)
 			token_arr[token_index] = token;
 			token_index++;
 		}
+		else
+		{
+			break;
+		}
 		token = custom_strtok(NULL, delimiter);
 	}
 	token_arr[token_index] = NULL;
@@ -43,6 +49,7 @@ void execute_comand(char **token_arr /*char *comand*/)
 	int status = 0;
 	pid_t child;
 	char **env = environ;
+	
 
 	if (token_arr == NULL || token_arr[0] == NULL)
 		return;
@@ -80,6 +87,14 @@ void execute_comand(char **token_arr /*char *comand*/)
 		else
 		{
 			waitpid(child, &status, 0);
+
+	/*		output = getenv();
+			if (output != NULL)
+			{
+				output[strcspn(output, "\n")] = 0;
+				write(STDOUT_FILENO, output, strlen(output));
+				free(output);
+			}*/
 		}
 	}
 }
