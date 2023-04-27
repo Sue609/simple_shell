@@ -16,7 +16,6 @@ void get_command(char **comand, size_t *n)
 
 	while (*comand == NULL || strlen(*comand) == 0)
 	{
-		/*prompt();*/
 		characters_read = getline(comand, n, stdin);
 
 		if (characters_read == -1)
