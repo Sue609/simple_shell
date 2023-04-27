@@ -51,7 +51,6 @@ void get_command(char **comand, size_t *n)
 
 		*(end + 1) = '\0';
 	}
-	/*(*comand)[strcspn(*comand, "\n \t")] = '\0';*/
 }
 
 
@@ -68,11 +67,12 @@ int main(void)
 	char *comand = NULL;
 	size_t n = 0;
 	
-	comand = (char *)malloc(100 * sizeof(char));
+	comand = (char *)malloc(10 * sizeof(char));
 	while (1)
 	{
 		get_command(&comand, &n);
 		tokenizer(comand, delimeter);
+		free(comand);
 	}
 	free(comand);
 	return (0);
