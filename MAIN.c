@@ -31,7 +31,7 @@ void get_command(char **comand, size_t *n)
 			continue;
 		}
 
-		if ((*comand)[characters_read - 1] == '\n')
+		if ((*comand)[characters_read - 1] == '\n' || (*comand)[characters_read - 1] == ' ')
 		{
 			(*comand)[characters_read - 1] = '\0';
 		}
