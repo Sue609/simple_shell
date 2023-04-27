@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 /**
  * main - The beginning of the program.
@@ -21,5 +22,6 @@ int main(void)
 			comand[strlen(comand) - 1] = '\0';
 		tokenizer(comand, delimeter);
 	}
+	free(comand);
 	return (0);
 }
