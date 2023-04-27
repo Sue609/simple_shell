@@ -114,5 +114,7 @@ char *expand_line(char *line, int *line_pos, int size)
 	free(line);
 	*line_pos = 0;
 
+	free(new_line);
+
 	return (new_line);
 }

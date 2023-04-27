@@ -11,6 +11,7 @@ void get_command(char **comand, size_t *n)
 {
 	char *start;
 	ssize_t characters_read;
+	char *end;
 	*comand = NULL;
 
 	while (*comand == NULL || strlen(*comand) == 0)
@@ -42,6 +43,14 @@ void get_command(char **comand, size_t *n)
 			*comand = NULL;
 			continue;
 		}
+		end = *comand + strlen(*comand) - 1;
+
+		while (end > start && (*end == ' ' || *end == '\t' || *end == '\n'))
+		{
+			end--;
+		}
+
+		*(end + 1) = '\0';
 	}
 	(*comand)[strcspn(*comand, "\n \t")] = '\0';
 }
