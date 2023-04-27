@@ -22,12 +22,12 @@ void tokenizer(char *comand, char *delimiter)
 	{
 		if (token[0] != '#')
 		{
-		/*	if (token_index > 0 && strcmp(token_arr[token_index - 1], ";") == 0)
+			if (token_index > 0 && strcmp(token_arr[token_index - 1], ";") == 0)
 			{
 				token_arr[token_index - 1] = NULL;
 				execute_comand(token_arr, NULL);
 				token_index = 0;
-			}*/
+			}
 			token_arr[token_index] = token;
 			token_index++;
 		}

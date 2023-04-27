@@ -47,10 +47,6 @@ void run_exit_command(char *str[], int index)
 	}
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d92c1e73ead333d4f6f20c3dadc66fba43c10e9
 /**
  * run_ls_command - this function runs the list command.
  * @token_arr: double character pointer .
