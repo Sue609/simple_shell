@@ -51,7 +51,7 @@ void get_command(char **comand, size_t *n)
 
 		*(end + 1) = '\0';
 	}
-	(*comand)[strcspn(*comand, "\n \t")] = '\0';
+	/*(*comand)[strcspn(*comand, "\n \t")] = '\0';*/
 }
 
 
