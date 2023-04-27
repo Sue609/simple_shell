@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 /**
  * get_command - This function gets user input
@@ -14,7 +15,7 @@ void get_command(char **comand, size_t *n)
 	char *end;
 	*comand = NULL;
 
-	while (*comand == NULL || strlen(*comand) == 0)
+	while (1)/*(*comand == NULL || strlen(*comand) == 0)*/
 	{
 		characters_read = getline(comand, n, stdin);
 
@@ -29,18 +30,19 @@ void get_command(char **comand, size_t *n)
 			free(*comand);
 			*comand = NULL;
 			continue;
-		}
+		}/*
 		if (*comand == NULL)
 			continue;
 		if ((*comand)[characters_read - 1] == '\n' || (*comand)[characters_read - 1] == ' ')
 		{
 			(*comand)[characters_read - 1] = '\0';
-		}
+		}*/
 
 		start = *comand;
-		if (start == NULL)
-			continue;
-		while (*start == ' ' || *start == '\t')
+
+		while (isspace(*start))
+			start++;
+		/*while (*start == ' ' || *start == '\t')
 		{
 			start++;
 		}
@@ -49,17 +51,21 @@ void get_command(char **comand, size_t *n)
 			free(*comand);
 			*comand = NULL;
 			continue;
-		}
-		end = *comand + strlen(*comand) - 1;
+		}*/
+		end = *comand + characters_read - 1;
 
-		while (end > start && (*end == ' ' || *end == '\t' || *end == '\n'))
+		/*while (end > start && (*end == ' ' || *end == '\t' || *end == '\n'))
 		{
 			end--;
 			if (end == NULL)
 				continue;
-		}
+		}*/
+		while (end > start && isspace(*end))
+			end--;
+		if (strlen(start) > 0)
+			break;
 
-		*(end + 1) = '\0';
+		/**(end + 1) = '\0';*/
 	}
 }
 
