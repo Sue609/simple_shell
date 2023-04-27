@@ -67,14 +67,14 @@ int main(void)
 	char delimeter[] = " \t\n";
 	char *comand = NULL;
 	size_t n = 0;
-
+	
+	comand = (char *)malloc(100 * sizeof(char));
 	while (1)
 	{
-		comand = (char *)malloc(100 * sizeof(char));
 		get_command(&comand, &n);
 		tokenizer(comand, delimeter);
-		free(comand);
 	}
+	free(comand);
 	return (0);
 
 }

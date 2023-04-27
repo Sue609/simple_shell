@@ -39,7 +39,6 @@ char *custom_strtok(char *str, const char *delimeters)
 		*next_token = '\0';
 		next_token++;
 	}
-
 	return (token);
 }
 
@@ -62,7 +61,6 @@ size_t my_strcspn(const char *s, const char *reject)
 		else
 			s++, n++;
 	}
-
 	return (n);
 }
 
