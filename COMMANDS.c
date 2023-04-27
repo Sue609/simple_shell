@@ -1,5 +1,6 @@
 #include "shell.h"
 #include <errno.h>
+
 /**
  * run_cd_command - function runs change directory command.
  * @token_arr: double character pointer.
@@ -48,7 +49,6 @@ void run_exit_command(char *str[], int index)
 	}
 
 }
-
 
 
 /**
