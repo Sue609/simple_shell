@@ -30,13 +30,16 @@ void get_command(char **comand, size_t *n)
 			*comand = NULL;
 			continue;
 		}
-
+		if (*comand == NULL)
+			continue;
 		if ((*comand)[characters_read - 1] == '\n' || (*comand)[characters_read - 1] == ' ')
 		{
 			(*comand)[characters_read - 1] = '\0';
 		}
 
 		start = *comand;
+		if (start == NULL)
+			continue;
 		while (*start == ' ' || *start == '\t')
 		{
 			start++;
@@ -52,6 +55,8 @@ void get_command(char **comand, size_t *n)
 		while (end > start && (*end == ' ' || *end == '\t' || *end == '\n'))
 		{
 			end--;
+			if (end == NULL)
+				continue;
 		}
 
 		*(end + 1) = '\0';
@@ -78,8 +83,9 @@ int main(void)
 		get_command(&comand, &n);
 		tokenizer(comand, delimeter);
 		free(comand);
+		comand = NULL;
+		comand = (char *)malloc(10 * sizeof(char));
 	}
-	free(comand);
 	return (0);
 
 }
