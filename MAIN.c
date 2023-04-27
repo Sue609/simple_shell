@@ -8,12 +8,12 @@
  *
  * Return: nothing
  */
+/*
 void get_command(char **comand, size_t *n)
 {
 	char *start;
 	ssize_t characters_read;
 	char *end;
-	int interactive = isatty(STDIN_FILENO);
 	*comand = NULL;
 
 	while (*comand == NULL || strlen(*comand) == 0)
@@ -22,11 +22,9 @@ void get_command(char **comand, size_t *n)
 
 		if (characters_read == -1)
 		{
-			if (interactive)
-				write(STDOUT_FILENO, "\n", 1);
+			write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
-
 		if (characters_read == 1 && (*comand)[0] == '\n')
 		{
 			free(*comand);
@@ -38,7 +36,6 @@ void get_command(char **comand, size_t *n)
 			(*comand)[characters_read - 1] = '\0';
 			characters_read--;
 		}
-
 		start = *comand;
 		while (*start == ' ' || *start == '\t')
 		{
@@ -60,7 +57,7 @@ void get_command(char **comand, size_t *n)
 	}
 }
 
-
+*/
 /**
  * main - The beginning of the program.
  * @void the main function does not take any parameters.
@@ -74,15 +71,20 @@ int main(void)
 	char *comand = NULL;
 	size_t n = 0;
 	
-	comand = (char *)malloc(10 * sizeof(char));
+/*	comand = (char *)malloc(10 * sizeof(char));*/
 	while (1)
 	{
-		get_command(&comand, &n);
+		/*get_command(&comand, &n);*/
+		if (getline(&comand, &n, stdin) == -1)
+			break;
+		if (comand[strlen(comand) - 1] == '\n')
+			comand[strlen(comand) - 1] = '\0';
 		tokenizer(comand, delimeter);
-		free(comand);
+		/*free(comand);
 		comand = NULL;
-		comand = (char *)malloc(10 * sizeof(char));
+		comand = (char *)malloc(10 * sizeof(char));*/
 	}	
+	free(comand);
 	return (0);
 
 }

@@ -48,8 +48,7 @@ void execute_comand(char **token_arr /*char *comand*/)
 	int token_index = 0;
 	int status = 0;
 	pid_t child;
-	char **env = environ;
-	
+	char **env = environ;	
 
 	if (token_arr == NULL || token_arr[0] == NULL)
 		return;
@@ -88,13 +87,6 @@ void execute_comand(char **token_arr /*char *comand*/)
 		{
 			waitpid(child, &status, 0);
 
-	/*		output = getenv();
-			if (output != NULL)
-			{
-				output[strcspn(output, "\n")] = 0;
-				write(STDOUT_FILENO, output, strlen(output));
-				free(output);
-			}*/
 		}
 	}
 }
