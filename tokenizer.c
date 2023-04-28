@@ -45,7 +45,6 @@ void tokenizer(char *comand, char *delimiter)
 /**
  * execute_comand - function that executes a comand
  * @token_arr: the string passed as comands
- * @comand: The comands passed
  * Return:pointer
  */
 void execute_comand(char **token_arr)
