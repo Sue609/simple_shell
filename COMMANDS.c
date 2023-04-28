@@ -20,7 +20,6 @@ void run_cd_command(char **token_arr, int token_index)
 	{
 		dir = my_getenv("HOME");
 	}
-
 	else if (strcmp(token_arr[1], "-") == 0)
 	{
 		dir = getenv("OLDPWD");
@@ -36,7 +35,6 @@ void run_cd_command(char **token_arr, int token_index)
 	{
 		dir = token_arr[1];
 	}
-
 	oldpwd = getenv("PWD");
 
 	if (oldpwd == NULL)
@@ -44,13 +42,9 @@ void run_cd_command(char **token_arr, int token_index)
 		fprintf(stderr, "Error: PWD not set\n");
 		return;
 	}
-
 	setenv("OLDPWD", oldpwd, 1);
-
 	if (chdir(dir) != 0)
-	{
 		perror("error");
-	}
 	else
 	{
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
