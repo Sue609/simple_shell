@@ -23,17 +23,14 @@ void run_cd_command(char **token_arr, int token_index)
 
 	else if (strcmp(token_arr[1], "-") == 0)
 	{
-<<<<<<< HEAD
 		dir = getenv("OLDPWD");
 		if (dir == NULL)
 		{
 			fprintf(stderr, "Error: OLDPWD not set\n");
 			return;
 		}
-=======
 
 		dir = my_getenv("OLDPWD");
->>>>>>> 4e80456274280e33cb76588a4d147c55e0bded9a
 	}
 	else
 	{
