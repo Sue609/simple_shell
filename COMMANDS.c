@@ -14,6 +14,7 @@ void run_cd_command(char **token_arr, int token_index)
 {
 	char *dir = NULL;
 	char cwd[1024];
+	char *oldpwd;
 
 	if (token_index == 1 || strcmp(token_arr[1], "~") == 0)
 	{
@@ -22,33 +23,40 @@ void run_cd_command(char **token_arr, int token_index)
 
 	else if (strcmp(token_arr[1], "-") == 0)
 	{
-		
-		dir = my_getenv("OLDPWD");
+		dir = getenv("OLDPWD");
+		if (dir == NULL)
+		{
+			fprintf(stderr, "Error: OLDPWD not set\n");
+			return;
+		}
 	}
 	else
 	{
 		dir = token_arr[1];
 	}
+
+	oldpwd = getenv("PWD");
+
+	if (oldpwd == NULL)
+	{
+		fprintf(stderr, "Error: PWD not set\n");
+		return;
+	}
+
+	setenv("OLDPWD", oldpwd, 1);
+
 	if (chdir(dir) != 0)
 	{
-		perror("Error");
+		perror("error");
 	}
 	else
 	{
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
-		{
-			my_setenv("PWD", cwd, 1);
-			my_setenv("OLDPWD", my_getenv("PWD"), 1);
-		}
+			setenv("PWD", cwd, 1);
 		else
-		{
 			perror("Error: could not get current working directory\n");
-		}
 	}
 }
-
-
-
 /**
  * run_exit_command - function that exits a command.
  * @str: character pointer.
