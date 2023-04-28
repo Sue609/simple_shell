@@ -37,6 +37,10 @@ void print_aliases(void);
 void set_alias(char *name, char *value);
 void handle_alias(char *input);
 
+
+int is_number(char *s);
+void print_error_message(char *message);
+
 size_t my_strcspn(const char *s, const char *reject);
 char *my_strchr(const char *s, int c);
 size_t my_strspn(const char *str, const char *delimiters);
