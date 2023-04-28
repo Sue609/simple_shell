@@ -74,7 +74,7 @@ void run_exit_command(char *str[], int index)
 			exit(status);
 		}
 		else
-			exit(98);
+			exit(0);
 	}
 }
 
