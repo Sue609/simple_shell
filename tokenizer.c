@@ -25,7 +25,7 @@ void tokenizer(char *comand, char *delimiter)
 			if (token_index > 0 && strcmp(token_arr[token_index - 1], ";") == 0)
 			{
 				token_arr[token_index - 1] = NULL;
-				execute_comand(token_arr, NULL);
+				execute_comand(token_arr);
 				token_index = 0;
 			}
 			token_arr[token_index] = token;
@@ -39,7 +39,7 @@ void tokenizer(char *comand, char *delimiter)
 	}
 	token_arr[token_index] = NULL;
 
-	execute_comand(token_arr, comand);
+	execute_comand(token_arr);
 }
 
 /**
@@ -48,10 +48,9 @@ void tokenizer(char *comand, char *delimiter)
  * @comand: The comands passed
  * Return:pointer
  */
-void execute_comand(char **token_arr, char *comand)
+void execute_comand(char **token_arr)
 {
-	int token_index = 0;
-	int status = 0;
+	int token_index = 0, status = 0;
 	pid_t child;
 	char **env = environ;
 
@@ -68,7 +67,7 @@ void execute_comand(char **token_arr, char *comand)
 		if (token_arr[1] != NULL)
 			my_unsetenv(token_arr[1]);
 		else
-			perror("Error: unable to set env variables");}
+			perror("Error: unable to set env variables"); }
 	else if (my_strcmp(token_arr[0], "env") == 0)
 		run_env_command();
 	else if (my_strcmp(token_arr[0], "setenv") == 0)
@@ -76,9 +75,7 @@ void execute_comand(char **token_arr, char *comand)
 		if (token_arr[1] != NULL && token_arr[2] != NULL)
 			my_setenv(token_arr[1], token_arr[2], 1);
 		else
-			perror("Error: invalid arguments for setenv\n");}
-	else if (my_strcmp(token_arr[0], "alias") == 0)
-		handle_alias(comand);
+			perror("Error: invalid arguments for setenv\n"); }
 	else if (my_strcmp(token_arr[0], "pwd") == 0)
 		print_current_directory();
 	else
@@ -90,7 +87,7 @@ void execute_comand(char **token_arr, char *comand)
 		{
 			execve(token_arr[0], token_arr, env);
 			perror("./shell");
-			exit(EXIT_FAILURE);}
+			exit(EXIT_FAILURE); }
 		else
-			waitpid(child, &status, 0);}
+			waitpid(child, &status, 0); }
 }
