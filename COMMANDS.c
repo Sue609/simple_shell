@@ -60,21 +60,19 @@ void run_cd_command(char **token_arr, int token_index)
 
 void run_exit_command(char *str[], int index)
 {
-	int status = 0;
+	int status;
 
 	if (my_strcmp(str[0], "exit") == 0)
 	{
 		if (index == 1)
 		{
-			exit(status);
+			exit(0);
 		}
 		if (index == 2 && is_number(str[1]))
 		{
 			status = my_atoi(str[1]);
 			exit(status);
 		}
-		else
-			exit(0);
 	}
 }
 
