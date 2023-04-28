@@ -20,9 +20,10 @@ int is_number(char *s)
 	for (; s[i] != '\0'; i++)
 	{
 		if (!isdigit(s[i]))
+
 		{
-			return 0;
+			return (0);
 		}
 	}
-	return 1;
+	return (1);
 }
