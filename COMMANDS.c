@@ -18,10 +18,6 @@ void run_cd_command(char **token_arr, int token_index)
 
 	if (token_index == 1 || strcmp(token_arr[1], "~") == 0)
 		dir = my_getenv("HOME");
-<<<<<<< HEAD
-	}
-=======
->>>>>>> a2d88bccc2a467cd203117534318ec50f1bae7a7
 	else if (strcmp(token_arr[1], "-") == 0)
 	{
 		dir = getenv("OLDPWD");
@@ -35,10 +31,7 @@ void run_cd_command(char **token_arr, int token_index)
 	}
 	else
 		dir = token_arr[1];
-<<<<<<< HEAD
-	}
-=======
->>>>>>> a2d88bccc2a467cd203117534318ec50f1bae7a7
+
 	oldpwd = getenv("PWD");
 
 	if (oldpwd == NULL)
