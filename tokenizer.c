@@ -57,48 +57,36 @@ void execute_comand(char **token_arr, char *comand)
 
 	if (token_arr == NULL || token_arr[0] == NULL)
 		return;
-
 	if (my_strcmp(token_arr[0], "cd") == 0)
 		run_cd_command(token_arr, token_index);
-
 	else if (my_strcmp(token_arr[0], "exit") == 0)
 		run_exit_command(&token_arr[0], token_index);
-
 	else if (my_strcmp(token_arr[0], "ls") == 0)
 		run_ls_command(token_arr, status);
 	else if (my_strcmp(token_arr[0], "unsetenv") == 0)
-	{
 		if (token_arr[1] != NULL)
 			my_unsetenv(token_arr[1]);
 		else
 			perror("Error: unable to set env variables");
-	}
 	else if (my_strcmp(token_arr[0], "env") == 0)
 		run_env_command();
 	else if (my_strcmp(token_arr[0], "setenv") == 0)
-	{
 		if (token_arr[1] != NULL && token_arr[2] != NULL)
 			my_setenv(token_arr[1], token_arr[2], 1);
 		else
 			perror("Error: invalid arguments for setenv\n");
-	}
 	else if (my_strcmp(token_arr[0], "alias") == 0)
 		handle_alias(comand);
-
 	else if (my_strcmp(token_arr[0], "pwd") == 0)
 		print_current_directory();
 	else
-	{
 		child = fork();
 		if (child == -1)
 			exit(EXIT_FAILURE);
 		else if (child == 0)
-		{
 			execve(token_arr[0], token_arr, env);
 			perror("./shell");
 			exit(EXIT_FAILURE);
-		}
 		else
 			waitpid(child, &status, 0);
-	}
 }

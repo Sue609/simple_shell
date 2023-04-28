@@ -23,12 +23,17 @@ void run_cd_command(char **token_arr, int token_index)
 
 	else if (strcmp(token_arr[1], "-") == 0)
 	{
+<<<<<<< HEAD
 		dir = getenv("OLDPWD");
 		if (dir == NULL)
 		{
 			fprintf(stderr, "Error: OLDPWD not set\n");
 			return;
 		}
+=======
+
+		dir = my_getenv("OLDPWD");
+>>>>>>> 4e80456274280e33cb76588a4d147c55e0bded9a
 	}
 	else
 	{
@@ -67,19 +72,22 @@ void run_cd_command(char **token_arr, int token_index)
 
 void run_exit_command(char *str[], int index)
 {
-	int status = 0;
+	int exit_status;
 
-	if (index == 2 && my_strcmp(str[0], "exit") == 0)
+	if (strcmp(str[0], "exit") == 0)
 	{
-		status = my_atoi(str[1]);
-		exit(status);
+		if (index == 1)
+		{
+			exit(0);
+		}
+		else if (index == 2 && strcmp(str[0], "exit") == 0)
+		{
+			exit_status = atoi(str[1]);
+			exit(exit_status);
+		}
 	}
-	else if (index == 1 && my_strcmp(str[0], "exit") == 0)
-	{
-		exit(0);
-	}
+
 }
-
 /**
  * run_ls_command - this function runs the list command.
  * @token_arr: double character pointer .
