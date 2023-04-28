@@ -66,10 +66,22 @@ void execute_comand(char **token_arr, char *comand)
 
 	else if (my_strcmp(token_arr[0], "ls") == 0)
 		run_ls_command(token_arr, status);
-
+	else if (my_strcmp(token_arr[0], "unsetenv") == 0)
+	{
+		if (token_arr[1] != NULL)
+			my_unsetenv(token_arr[1]);
+		else
+			perror("Error: unable to set env variables");
+	}
 	else if (my_strcmp(token_arr[0], "env") == 0)
 		run_env_command();
-
+	else if (my_strcmp(token_arr[0], "setenv") == 0)
+	{
+		if (token_arr[1] != NULL && token_arr[2] != NULL)
+			my_setenv(token_arr[1], token_arr[2], 1);
+		else
+			perror("Error: invalid arguments for setenv\n");
+	}
 	else if (my_strcmp(token_arr[0], "alias") == 0)
 		handle_alias(comand);
 

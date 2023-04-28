@@ -69,5 +69,7 @@ void handle_external_comands(char **token_arr, char **env);
 int my_strncmp(const char *s1, const char *s2, size_t n);
 char *my_getenv(const char *name);
 size_t m_strlen(const char *str);
+int my_setenv(char *name, char *value, int overwrite);
+int my_unsetenv(char *name);
 
 #endif

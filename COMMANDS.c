@@ -1,5 +1,6 @@
 #include "shell.h"
 #include <errno.h>
+#include <ctype.h>
 
 /**
  * run_cd_command - function runs change directory command.
@@ -11,14 +12,38 @@
 
 void run_cd_command(char **token_arr, int token_index)
 {
-	if (token_index == 1)
+	char *dir = NULL;
+	char cwd[1024];
+
+	if (token_index == 1 || strcmp(token_arr[1], "~") == 0)
 	{
-		chdir(my_getenv("HOME"));
+		dir = my_getenv("HOME");
 	}
 
+	else if (strcmp(token_arr[1], "-") == 0)
+	{
+		
+		dir = my_getenv("OLDPWD");
+	}
 	else
 	{
-		chdir(token_arr[1]);
+		dir = token_arr[1];
+	}
+	if (chdir(dir) != 0)
+	{
+		perror("Error");
+	}
+	else
+	{
+		if (getcwd(cwd, sizeof(cwd)) != NULL)
+		{
+			my_setenv("PWD", cwd, 1);
+			my_setenv("OLDPWD", my_getenv("PWD"), 1);
+		}
+		else
+		{
+			perror("Error: could not get current working directory\n");
+		}
 	}
 }
 
@@ -34,7 +59,7 @@ void run_cd_command(char **token_arr, int token_index)
 
 void run_exit_command(char *str[], int index)
 {
-	int status;
+	int status = 0;
 
 	if (index == 2 && my_strcmp(str[0], "exit") == 0)
 	{
