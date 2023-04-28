@@ -22,7 +22,7 @@ void run_cd_command(char **token_arr, int token_index)
 
 	else if (strcmp(token_arr[1], "-") == 0)
 	{
-		
+
 		dir = my_getenv("OLDPWD");
 	}
 	else
